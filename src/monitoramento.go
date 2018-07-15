@@ -49,7 +49,15 @@ func leComando() int {
 
 func iniciarMonitoramento() {
     fmt.Println("Iniciando monitoramento...")
-    site := "https://www.google.com.br"
-    resp, _ := http.Get(site)
-    fmt.Println(resp)
+    for {
+            site := "https://www.google.com.br"
+	    resp, _ := http.Get(site)
+	    fmt.Println(resp)
+
+	    if resp.StatusCode == 200 {
+	       fmt.Println("Site carregado com sucesso")
+	   } else {
+	       fmt.Println("Eita, o site trashou")
+	  }
+  }
 }
