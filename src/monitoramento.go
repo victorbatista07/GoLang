@@ -4,15 +4,23 @@ import (
 "fmt";
 "os";
 "net/http"
+"time"
 )
 func main() {
 
     exibeIntroducao()
-    exibeMenu()
-    comando := leComando()
-    switch comando {
+    for {
+        exibeMenu()
+        comando := leComando()
+        executaComando(comando)
+        time.Sleep (5 * time.Minute)
+    }
+}
+
+func executaComando (comandoRecebido int) {
+        switch comandoRecebido {
         case 1:
-             iniciarMonitoramento()
+            iniciarMonitoramento()
         case 2:
             fmt.Println("Exibindo Logs...")
         case 0:
@@ -21,8 +29,11 @@ func main() {
         default:
             fmt.Println("Não conheço este comando")
             os.Exit(-1)
-       }
+        }
+
+
 }
+
 
 func exibeIntroducao() {
     fmt.Println("Digite seu nome")
@@ -49,15 +60,13 @@ func leComando() int {
 
 func iniciarMonitoramento() {
     fmt.Println("Iniciando monitoramento...")
-    for {
-            site := "https://www.google.com.br"
-	    resp, _ := http.Get(site)
-	    fmt.Println(resp)
+    site := "https://www.google.com.br"
+    resp, _ := http.Get(site)
+    fmt.Println(resp)
 
-	    if resp.StatusCode == 200 {
-	       fmt.Println("Site carregado com sucesso")
-	   } else {
-	       fmt.Println("Eita, o site trashou")
-	  }
-  }
+	if resp.StatusCode == 200 {
+        fmt.Println("Site carregado com sucesso")
+    } else {
+	    fmt.Println("Eita, o site trashou")
+    }
 }
