@@ -1,9 +1,10 @@
 package main
 
 import (
-    "fmt"
-    "time"
+	"fmt"
+	"time"
 )
-func main () {
-    fmt.Println("Hello World from GoLang, the time is", time.Now())
+
+func main() {
+	fmt.Println("Hello World from GoLang, the time is", time.Now())
 }
