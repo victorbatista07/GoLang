@@ -10,18 +10,25 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"flag"
 )
 
 const monitoramento = 2
 const delay = 5
 
 func main() {
-	exibeIntroducao()
-	for {
-		exibeMenu()
-		comando := leComando()
-		executaComando(comando)
+	var command int = 0
+	flag.IntVar(&command, "command", 0, "Flag with command parse by command-line terminal")
+	flag.Parse()
+	if command == 0 {
+			exibeIntroducao()
+		for {
+			exibeMenu()
+			comando := leComando()
+			executaComando (comando)
+		}
 	}
+	executaComando(command)
 }
 
 func executaComando(comandoRecebido int) {
@@ -44,7 +51,7 @@ func exibeIntroducao() {
 	fmt.Println("Digite seu nome")
 	var nome string
 	fmt.Scan(&nome)
-	versao := 1.1
+	versao := 1.3
 	fmt.Println("Olá, sr.", nome)
 	fmt.Println("Este programa está na versão", versao)
 }
