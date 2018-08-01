@@ -1,5 +1,0 @@
-https://www.google.com.br
-https://yahoo.com.br
-https://www.catho.com.br
-https://httpstat.us/404
-https://httpstat.us/301
